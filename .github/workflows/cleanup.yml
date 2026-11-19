@@ -1,0 +1,17 @@
+name: cleanup-temp-branch
+on:
+  push:
+    branches: [temp-about]
+permissions:
+  contents: write
+  administration: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set default branch to main and delete temp-about
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/Nawadays-ai/gta6-trophy-rarity-forecast --method PATCH -f default_branch=main
+          gh api repos/Nawadays-ai/gta6-trophy-rarity-forecast/git/refs/heads/temp-about --method DELETE
