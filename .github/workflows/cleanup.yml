@@ -4,7 +4,6 @@ on:
     branches: [temp-about]
 permissions:
   contents: write
-  administration: write
 jobs:
   cleanup:
     runs-on: ubuntu-latest
